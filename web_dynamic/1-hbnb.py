@@ -11,7 +11,7 @@ import uuid
 app = Flask(__name__)
 
 
-@app.route("/0-hbnb/", strict_slashes=False)
+@app.route("/1-hbnb/", strict_slashes=False)
 def hbnb():
     """
     display a HTML page like 8-index.html, which was done
