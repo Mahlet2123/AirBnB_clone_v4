@@ -24,7 +24,7 @@ def close_dp(exit):
     storage.close()
 
 
-@app.route("/1-hbnb", strict_slashes=False)
+@app.route("/2-hbnb", strict_slashes=False)
 def db_app():
     """this function fetches all the states from mysql database"""
     states = list(storage.all(State).values())
@@ -32,7 +32,7 @@ def db_app():
     cache_id = str(uuid.uuid4())
 
     return render_template(
-        "1-hbnb.html",
+        "2-hbnb.html",
         states=states,
         amenities=amenities,
         cache_id=cache_id

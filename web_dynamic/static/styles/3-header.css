@@ -1,18 +1,33 @@
 header {
-	background-color: white;
-	height: 70px;
-	width: 100%;
-	
-	border-bottom: 1px solid #CCCCCC;
+    width: 100%;
+    background-color: white;
+    height: 70px;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
 }
 
-#header_logo {
-	height: 100%;
-	width: 142px;
+header > .logo {
+    width: 142px;
+    height: 60px;
+    background: url("../images/logo.png") no-repeat center;
+    margin-left: 20px;
+}
 
-	background-image: url("../images/logo.png");
-	background-repeat: no-repeat;
-	background-position: center;
+#api_status {
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    margin-right: 30px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #CCCCCC;
+}
 
-	margin-left: 20px;
+#api_status.available {
+    background-color: #FF545F;
 }
