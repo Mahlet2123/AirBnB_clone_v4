@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') }}?cache_id={{ cache_id }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') }}?cache_id={{ cache_id }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css') }}?cache_id={{ cache_id }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{{ url_for('static', filename='static/scripts/1-hbnb.js') }}?cache_id={{ cache_id }}"></script>
     <title>AirBnB_clone</title>
 </head>
 <body>
@@ -37,7 +39,7 @@
                 <h3>Amenities</h3>
                 <ul class="popover">
                     {% for amenity in amenities|sort(attribute='name') %}
-                        <lI>{{ amenity.name }}</LI>
+                        <li><input type="checkbox" data-id=":amenity_id" data-name=":amenity_name">{{ amenity.name }}</li>
                     {% endfor %}
                 </ul>
             </div>
