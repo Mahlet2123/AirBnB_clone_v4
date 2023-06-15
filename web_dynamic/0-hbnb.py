@@ -1,41 +1,42 @@
 #!/usr/bin/python3
-""" script that starts a Flask web application """
+""" This script lets the flask app connects to mysql database and
+fetch all the data from the states table.
+
+ip address 0.0.0.0 is going to be used to all the machines within the
+the network to have access to our app. Port 5000 will be used at entry
+point """
+
+
 from flask import Flask, render_template
 from models import storage
 from models.state import State
 from models.amenity import Amenity
-from models.place import Place
 import uuid
 
 
 app = Flask(__name__)
 
 
-@app.route("/0-hbnb/", strict_slashes=False)
-def hbnb():
-    """
-    display a HTML page like 8-index.html, which was done
-    during the project 0x01. AirBnB clone - Web static
-    """
+@app.teardown_appcontext
+def close_dp(exit):
+    """This context function gives back the
+    connection once request is done"""
+    storage.close()
+
+
+@app.route("/0-hbnb", strict_slashes=False)
+def db_app():
+    """this function fetches all the states from mysql database"""
     states = list(storage.all(State).values())
     amenities = list(storage.all(Amenity).values())
-    places = list(storage.all(Place).values())
+    cache_id = str(uuid.uuid4())
+
     return render_template(
         "0-hbnb.html",
         states=states,
         amenities=amenities,
-        places=places,
-        cache_id=uuid.uuid4()
+        cache_id=cache_id
     )
-
-
-@app.teardown_appcontext
-def teardown_db(exception):
-    """
-    close the database connection after
-    the request has been processed.
-    """
-    storage.close()
 
 
 if __name__ == "__main__":
